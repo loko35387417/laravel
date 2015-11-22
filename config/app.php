@@ -1,5 +1,24 @@
 <?php
 
+if (!function_exists('w')) {
+    function w($str = null)
+    {
+        echo '<pre>';
+        var_dump($str);
+        echo '<pre>';
+    }
+}
+
+if (!function_exists('we')) {
+function we($str = null)
+    {
+        echo '<pre>';
+        var_dump($str);
+        echo '<pre>';
+        exit;
+    }
+}
+
 return [
 
     /*
@@ -39,7 +58,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Chongqing',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +97,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'SomeRandomString'),
+    'key' => env('APP_KEY', 'Te4IZkSkyXFqWmCCWkJag2vrXPmE11Bk'),
 
     'cipher' => 'AES-256-CBC',
 
@@ -136,7 +155,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Collective\Html\HtmlServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -193,6 +212,8 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
