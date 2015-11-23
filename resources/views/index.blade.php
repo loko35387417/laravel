@@ -16,6 +16,31 @@
         <p><label>Storage Path&nbsp;&colon;&nbsp;</label>{{storage_path()}}</p>
         <p><label>Site Name : </label></p>
     </div>
+    <div class="col-lg-12" id = "attr">
+        <style>
+            #attr p{
+                margin:0;
+                border-left: 1px dotted #000;
+                font-size:24px;
+            }
+            #attr:first-child{
+                border :1px solid red;
+            }
+        </style>
+        <p>laravel(根)</p>
+        <p>--------app</p>
+        <p>----------------Https</p>
+        <p>------------------------routes.php(路由定义文件!!!important)</p>
+        <p>------------------------Controllers</p>
+        <p>--------------------------------Controllers(控制器)</p>
+        <p>--------Model(模型)</p>
+        <p>--------resources(视图)</p>
+        <p>--------storage</p>
+        <p>----------------framework</p>
+        <p>------------------------views</p>
+        <p>--------config</p>
+        <p>--------public</p>
+    </div>
 </div>
 @endsection
 
