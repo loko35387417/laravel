@@ -31,7 +31,14 @@ Route::group(['prefix' => 'article', 'namespace' => 'article'], function(){
     Route::get('/{id}', ['as' => 'single', 'uses' => 'ArticleController@show'])->where(['id' => '[0-9]+']);
 });
 
-//Route::controllers([  
-//    'auth' => 'Auth\AuthController',
-//    'password' => 'Auth\PasswordController',
-//]);
+//Route::controller('user', 'UserController');
+Route::group(['prefix' => 'user'], function(){
+    Route::get('login', 'UserController@getLogin');
+    Route::get('register', 'UserController@getRegister');
+    Route::post('store', 'UserController@store');
+});
+
+Route::controllers([  
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);

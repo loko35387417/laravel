@@ -12,6 +12,8 @@
             <a class="btn btn-sm btn-success" href="{{URL::to('article/edit', $article->id)}}">Edit</a>
             <a class="btn btn-sm btn-info" href="{{URL::route('lists')}}">Back</a>
             <a class="btn btn-sm btn-success" href="{{URL::to('article/create')}}">Create New</a>
+            <a class="btn btn-sm btn-success" href="{{URL::to('article', $prev)}}">Prev</a>
+            <a class="btn btn-sm btn-success" href="{{URL::to('article', $next)}}">Next</a>
         </div>
     </div>
 </div>

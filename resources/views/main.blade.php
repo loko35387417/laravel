@@ -31,11 +31,16 @@
         <li >
             {!! link_to('about', trans('About')) !!}
         </li>
-        <li class="imgflag pull-right">
-            <a href="{!! url('language') !!}">Language</a>
+        <li class="pull-right">
+            {!! link_to('user/login', 'Login In') !!}
         </li>
+        <li class="pull-right">
+            {!! link_to('user/register', 'Rigister') !!}
+        </li>
+        
     </ul>
 </div>
+<!--navigation ended-->
 <!--content-->
 <div class="container content">
 @yield('content')

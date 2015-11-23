@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\article;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Model\Article;
+use App\User;
 
-class ArticleController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $list = Article::latest('published_at')->get();
-        return view('article.index', compact('list'));
+        //
     }
 
     /**
@@ -28,7 +27,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('article.create', compact('title', 'content'));
+        //
     }
 
     /**
@@ -39,12 +38,13 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $input['published_at'] = date('Y-m-d H:i:s');
-        
-        $status = Article::create($input);
-        
-        return redirect('article');
+        $submit = $request->all();
+        $data = factory('App\User')->make()->toArray();
+        $data['password'] = bcrypt(str_random(10));
+        $data['remember_token'] = str_random(22);
+        User::create($data);
+
+        return redirect('/');
     }
 
     /**
@@ -55,10 +55,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $article = Article::findorFail($id);
-        $next = $this->getNextId($id);
-        $prev = $this->getPrevId($id);
-        return view('article.show', compact('article', 'next', 'prev'));
+        //
     }
 
     /**
@@ -69,8 +66,7 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        $article = Article::findorFail($id);
-        return view('article.edit', compact('article'));
+        //
     }
 
     /**
@@ -82,10 +78,17 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $article = Article::find($request->get('id'));
-        $article->update($request->except('_token'));
-        
-        return redirect('/article');
+        //
+    }
+
+    public function getRegister() 
+    {
+        return view('user.login');
+    }
+    
+    public function getLogin() 
+    {
+        return view('user.login');
     }
     
     /**
@@ -96,18 +99,6 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        Article::destroy($id);
-        
-        return redirect('article');
-    }
-    
-    protected function getNextId($id)
-    {
-        return Article::where('id', '>', $id)->min('id');
-    }
-    
-    protected function getPrevId($id) 
-    {
-        return Article::where('id', '<', $id)->max('id');
+        //
     }
 }

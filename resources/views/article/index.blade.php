@@ -21,7 +21,9 @@
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Email Address</th>
-                                <th>Register Date</th>
+                                <th>Publish Date</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
