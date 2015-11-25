@@ -12,7 +12,7 @@ use \Illuminate\Contracts\Validation\Validator;
 class UserController extends Controller
 {
     public function __construct() {
-//        $this->middleware('auth');
+
     }
     
     /**
@@ -43,14 +43,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-//        $submit = $request->all();
-//        $data = factory('App\User')->make()->toArray();
-//        $data['password'] = bcrypt(str_random(10));
-//        $data['remember_token'] = str_random(22);
-//        User::create($data);
         $data = $request->all();
-        $status = Auth::attempt($data);
-        we($status);
+        $auth = new \App\Http\Controllers\Auth\AuthController;
+        $user = new User;
+        $validator = Validator::make($data, User::$rules);
+        we($validator);
+        we($user->create($data));
         
 //        return redirect('/');
     }
@@ -91,7 +89,7 @@ class UserController extends Controller
 
     public function register() 
     {
-        return view('auth.register');
+        return view('auth.register')->with('message', 'hello');
     }
     
     public function login() 
@@ -101,6 +99,11 @@ class UserController extends Controller
     
     public function remoteCheck() {
         return 123;
+    }
+    
+    public function logout()
+    {
+        
     }
     
     /**

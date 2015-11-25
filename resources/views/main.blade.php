@@ -21,7 +21,6 @@
 <div class="container top">
     @yield('top')
 </div>
-@extends('navigation')
 <!--navigation-->
 <div class="container">
     <ul class="nav navbar-na1v nav-tabs">

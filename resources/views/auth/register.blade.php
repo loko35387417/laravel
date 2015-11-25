@@ -24,7 +24,7 @@
                     <h3 class="panel-title">Please Sign In</h3>
                 </div>
                 <div class="panel-body">
-                    @if (count($errors->all))
+                    @if (count($errors->all()))
                         <div class="alert alert-danger">
                             <ul>
                             @foreach($errors->all() as $error)
@@ -36,8 +36,8 @@
                      {!! Form::open(['url'=>'user/store', 'class'=>'form-signup', 'id' => 'form']) !!}
                         <fieldset>
                             <div class="form-group">
-                                {!! Form::label('username', 'Username:')!!}
-                                {!! Form::text('username', null, array('id' => 'username', 'class'=>'form-control', 'placeholder'=>'your name')) !!}
+                                {!! Form::label('name', 'Username:')!!}
+                                {!! Form::text('name', null, array('id' => 'name', 'class'=>'form-control', 'placeholder'=>'your name')) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('email', 'Email Address:')!!}

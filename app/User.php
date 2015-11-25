@@ -37,10 +37,23 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
     
+    
+    
     public static $rules = array(
-        'username'=>'required|alpha|between:4,10',
+        'name'=>'required|alpha|between:4,10',
         'email'=>'required|email|unique:users',
         'password'=>'required|alpha_num|between:6,16|confirmed',
         'dpassword'=>'required|alpha_num|between:6,16'
     );
+ 
+    public function setGroupAttribute($val)
+    {
+        $groups = [1, 2, 4, 8, 16, 32];
+        $this->attributes['group'] = $groups[rand(0, count($groups) - 1)];
+    }
+    
+    public function setPasswordAttribute($val)
+    {
+        $this->attributes['password'] = bcrypt('123456');
+    }
 }
