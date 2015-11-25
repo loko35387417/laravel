@@ -21,4 +21,7 @@
         
     </ul>
 </div>
+<script>
+console.log('extends');
+</script>
 

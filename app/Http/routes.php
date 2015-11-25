@@ -16,12 +16,19 @@
 //
 //Route::get('/article', 'ArticleController@index');
 
-Route::group(['prefix' => '/'], function(){
-    Route::get('about', ['as' => 'home', 'uses' => 'SiteController@about']);
-    Route::get('/', ['as' => 'about', 'uses' => 'SiteController@index']);
+Route::filter('auth', function()
+{
+    if (Auth::guest()) return Redirect::guest('user/login');
 });
 
-Route::group(['prefix' => 'article', 'namespace' => 'article'], function(){
+//home
+Route::get('/', ['as' => 'home', 'uses' => 'SiteController@index']);
+
+Route::group(['before' => 'auth', 'prefix' => '/'], function(){
+    Route::get('about', ['as' => 'about', 'uses' => 'SiteController@about']);    
+});
+
+Route::group(['before' => 'auth', 'prefix' => 'article', 'namespace' => 'article'], function(){
     Route::get('create', 'ArticleController@create');
     Route::get('destory/{id}', 'ArticleController@destroy');
     Route::get('edit/{id}', 'ArticleController@edit');
@@ -33,9 +40,10 @@ Route::group(['prefix' => 'article', 'namespace' => 'article'], function(){
 
 //Route::controller('user', 'UserController');
 Route::group(['prefix' => 'user'], function(){
-    Route::get('login', 'UserController@getLogin');
-    Route::get('register', 'UserController@getRegister');
+    Route::get('login', 'UserController@login');
+    Route::get('register', 'UserController@register');
     Route::post('store', 'UserController@store');
+    Route::get('remotecheck','UserController@remoteCheck');
 });
 
 Route::controllers([  

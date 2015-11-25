@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use \Illuminate\Contracts\Validation\Validator;
 
 class UserController extends Controller
 {
+    public function __construct() {
+//        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+       return 1;
     }
 
     /**
@@ -38,13 +43,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $submit = $request->all();
-        $data = factory('App\User')->make()->toArray();
-        $data['password'] = bcrypt(str_random(10));
-        $data['remember_token'] = str_random(22);
-        User::create($data);
-
-        return redirect('/');
+//        $submit = $request->all();
+//        $data = factory('App\User')->make()->toArray();
+//        $data['password'] = bcrypt(str_random(10));
+//        $data['remember_token'] = str_random(22);
+//        User::create($data);
+        $data = $request->all();
+        $status = Auth::attempt($data);
+        we($status);
+        
+//        return redirect('/');
     }
 
     /**
@@ -81,14 +89,18 @@ class UserController extends Controller
         //
     }
 
-    public function getRegister() 
+    public function register() 
     {
-        return view('user.login');
+        return view('auth.register');
     }
     
-    public function getLogin() 
+    public function login() 
     {
-        return view('user.login');
+        return view('auth.login');
+    }
+    
+    public function remoteCheck() {
+        return 123;
     }
     
     /**

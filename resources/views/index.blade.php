@@ -49,11 +49,14 @@
 @endsection
 
 @section('bottom')
-
+<script>
+console.log('section bottom');
+</script>
+@endsection
 <script>
 $(document).ready(function(){
     $(".refresh").bind("click", function(){
-        alert(123);
+        
     });
 });
 </script>
