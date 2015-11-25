@@ -11,7 +11,7 @@ class Article extends Model
 {
     protected $table = 'article';
     
-    protected $fillable = ['title', 'content', 'tag', 'author'];
+    protected $fillable = ['title', 'content', 'tag', 'user_id'];
     
     /**
      * The max tags total is 3 for now

@@ -1,4 +1,4 @@
-@extends('main')
+@extends('common.main')
 
 @section('content')
 <div class="row">

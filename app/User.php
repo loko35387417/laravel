@@ -37,19 +37,16 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
     
-    
-    
-    public static $rules = array(
-        'name'=>'required|alpha|between:4,10',
-        'email'=>'required|email|unique:users',
-        'password'=>'required|alpha_num|between:6,16|confirmed',
-        'dpassword'=>'required|alpha_num|between:6,16'
-    );
- 
     public function setGroupAttribute($val)
     {
         $groups = [1, 2, 4, 8, 16, 32];
         $this->attributes['group'] = $groups[rand(0, count($groups) - 1)];
+    }
+    
+    public function setNameAttribute($val)
+    {
+        $list = ['Loko', 'Laka', 'Cola', 'Coco', 'Omma', 'Silk', 'Abal', 'Zols', 'Ghof', 'Roan'];
+        $this->attributes['name'] = $list[rand(0, count($list) - 1)];
     }
     
     public function setPasswordAttribute($val)

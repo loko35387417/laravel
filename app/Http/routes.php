@@ -41,6 +41,8 @@ Route::group(['before' => 'auth', 'prefix' => 'article', 'namespace' => 'article
 //Route::controller('user', 'UserController');
 Route::group(['prefix' => 'user'], function(){
     Route::get('login', 'UserController@login');
+    Route::post('access', 'UserController@access');
+    Route::get('logout', 'UserController@logout');
     Route::get('register', 'UserController@register');
     Route::post('store', 'UserController@store');
     Route::get('remotecheck','UserController@remoteCheck');

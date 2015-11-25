@@ -8,8 +8,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 use \Illuminate\Contracts\Validation\Validator;
+use App\Http\Controllers\Auth\AuthController;
 
-class UserController extends Controller
+class UserController extends AuthController
 {
     public function __construct() {
 
@@ -26,31 +27,25 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Process the login in information.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function create()
+    public function access(Request $req)
     {
-       return 1;
+        return $this->postLogin($req);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * 
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $data = $request->all();
-        $auth = new \App\Http\Controllers\Auth\AuthController;
-        $user = new User;
-        $validator = Validator::make($data, User::$rules);
-        we($validator);
-        we($user->create($data));
-        
-//        return redirect('/');
+    {    
+        return  $this->postRegister($request) ? redirect($this->redirectPath) : view('user.register');
     }
 
     /**
@@ -103,7 +98,7 @@ class UserController extends Controller
     
     public function logout()
     {
-        
+        return $this->getLogout();
     }
     
     /**

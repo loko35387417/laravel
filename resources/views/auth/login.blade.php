@@ -24,14 +24,8 @@
                     <h3 class="panel-title">Please Sign In</h3>
                 </div>
                 <div class="panel-body">
-                   <?php if(!empty($this->error)) { ?> 
-                    <div class="alert alert-danger">
-                       <?php foreach($this->error as $error) { ?> 
-                       <?php echo $error; ?><br>
-                       <?php } ?> 
-                    </div>
-                   <?php } ?> 
-                    {!!Form::open(['id' => 'form', 'url' => 'user/store'])!!}
+                    @include('errors.user_error')
+                    {!!Form::open(['id' => 'form', 'url' => 'user/access'])!!}
                         <fieldset>
                             <div class="form-group">
                                 {!!Form::label('email', 'Email')!!}

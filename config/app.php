@@ -96,8 +96,8 @@ return [
     | will not be safe. Please do this before deploying an application!
     |
     */
-//2ixNp2Jqin7axlWPqdIHYHCM6E9W4SGr
-    'key' => env('APP_KEY', '2ixNp2Jqin7axlWPqdIHYHCM6E9W4SGr'),
+//WQUVyndGuzBtDxcJuytzBg1ZxEV1LRT5
+    'key' => env('APP_KEY', 'WQUVyndGuzBtDxcJuytzBg1ZxEV1LRT5'),
 
     'cipher' => 'AES-256-CBC',
 

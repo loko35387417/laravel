@@ -16,7 +16,6 @@ class Tags extends Model
     
     public function setCreateAtAttribute($val)
     {
-        
         $this->attributes['create_at'] = date('Y-m-d H:i:s');
     }
     

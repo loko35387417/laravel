@@ -7,7 +7,6 @@
     <!--@{!! Html::style('//libs.useso.com/js/bootstrap/3.2.0/css/bootstrap.css')!!}-->
     <!--@{!! Html::script('//libs.useso.com/js/jquery/2.1.1/jquery.js')!!}-->
     <!--{!! Html::script('//libs.cdnjs.net/jquery-validate/1.11.1/jquery.validate.min.js')!!}-->
-    
     {!! Html::style('/assets/css/fonts.useso.1.css')!!}
     {!! Html::style('/assets/css/fonts.useso.2.css')!!}
     {!! Html::style('/assets/css/fonts.useso.bootstrap.css')!!}
@@ -24,16 +23,9 @@
                     <h3 class="panel-title">Please Sign In</h3>
                 </div>
                 <div class="panel-body">
-                    @if (count($errors->all()))
-                        <div class="alert alert-danger">
-                            <ul>
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                    @include('errors.user_error')
                      {!! Form::open(['url'=>'user/store', 'class'=>'form-signup', 'id' => 'form']) !!}
+                     <!--<input type="hidden" name="_token" value="{{ csrf_token() }}">-->
                         <fieldset>
                             <div class="form-group">
                                 {!! Form::label('name', 'Username:')!!}
@@ -48,8 +40,8 @@
                                 {!! Form::password('password', ['class'=>'form-control', 'placeholder'=>'your password']) !!} 
                             </div>                       
                             <div class="form-group">
-                                {!! Form::label('dpassword', 'Confirm Password:')!!}
-                                {!! Form::password('dpassword', ['class'=>'form-control', 'placeholder'=>'confirm your password']) !!}
+                                {!! Form::label('password_confirmation', 'Confirm Password:')!!}
+                                {!! Form::password('password_confirmation', ['class'=>'form-control', 'placeholder'=>'confirm your password']) !!}
                            </div>
                             <div class="form-group" style="margin-bottom: 0;">
                                 {!! Form::submit('Register Now',array('class'=>'btn btn-large btn-success btn-block')) !!}
@@ -93,7 +85,7 @@ $(document).ready(function(){
                 specifiedType : true,
                 required : true
             },
-            dpassword : {
+            password_confirmation : {
                 equalTo : "#password",
                 required : true
             }
@@ -109,17 +101,18 @@ $(document).ready(function(){
     $("#rand").bind("click", function(){
         $("#form input:visible").not("input[type='submit']").each(function(){
             switch($(arguments[1]).attr("name")) {
+                case "name" : 
                 case "username" : 
                     $(arguments[1]).val(randName(parseInt(Math.random()*6 + 4)));
                     break;
                 case "email" :
-                    var email = randName(parseInt(Math.random()*6 + 4)) + "@" + randName(3) + "." + randName(3);
+                    var email = randName(parseInt(Math.random()*6 + 4)) + "@" + randName(3) + ".com";
                     $(arguments[1]).val(email);
                     break;
                 case "password" : 
                     $(arguments[1]).val('laravel@laravel');
                     break;
-                case "dpassword" :
+                case "password_confirmation" :
                     $(arguments[1]).val($("#password").val());
                     break;
             }
